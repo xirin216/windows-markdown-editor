@@ -159,15 +159,22 @@ body {
   flex: 1;
   min-height: 0;
   padding: 12px 18px;
-  --content-width: 960px;
+  --editor-content-width: 960px;
+  --editor-content-padding: 40px;
+  --editor-content-block-padding: 28px;
+  --editor-ir-block-padding: 20px;
+  --editor-sv-block-padding: 10px;
 }
 
 .editor-shell[data-width="wide"] {
-  --content-width: 1200px;
+  --editor-content-width: 1280px;
 }
 
 .editor-shell[data-width="full"] {
-  --content-width: 100%;
+  --editor-content-width: 100%;
+  --editor-content-padding: 18px;
+  padding-left: 8px;
+  padding-right: 8px;
 }
 
 .vditor-wrapper {
@@ -200,16 +207,35 @@ body {
   color: #1f2937 !important;
 }
 
-.vditor-wysiwyg {
-  padding: 28px 40px !important;
-  max-width: var(--content-width) !important;
+.vditor-wysiwyg,
+.vditor-ir {
+  width: min(100%, var(--editor-content-width)) !important;
+  max-width: var(--editor-content-width) !important;
   margin: 0 auto !important;
+  box-sizing: border-box !important;
+  padding-block: var(--editor-content-block-padding) !important;
+  padding-inline: var(--editor-content-padding) !important;
+}
+
+.vditor-ir {
+  padding-block: var(--editor-ir-block-padding) !important;
+}
+
+.vditor-sv {
+  width: min(100%, var(--editor-content-width)) !important;
+  max-width: var(--editor-content-width) !important;
+  margin: 0 auto !important;
+  padding-block: var(--editor-sv-block-padding) !important;
+  padding-inline: var(--editor-content-padding) !important;
+  box-sizing: border-box !important;
 }
 
 .editor-shell .vditor-preview > .vditor-reset {
-  max-width: var(--content-width) !important;
+  width: min(100%, var(--editor-content-width)) !important;
+  max-width: var(--editor-content-width) !important;
   margin: 0 auto !important;
-  padding: 28px 40px !important;
+  padding-block: var(--editor-content-block-padding) !important;
+  padding-inline: var(--editor-content-padding) !important;
   box-sizing: border-box;
 }
 
@@ -228,6 +254,9 @@ body {
 
   .editor-shell {
     padding: 8px 12px;
+    --editor-content-padding: 20px;
+    --editor-content-block-padding: 20px;
+    --editor-ir-block-padding: 16px;
   }
 
   .app-actions {
@@ -236,14 +265,6 @@ body {
 
   .app-controls {
     justify-content: flex-start;
-  }
-
-  .vditor-wysiwyg {
-    padding: 20px !important;
-  }
-
-  .editor-shell .vditor-preview > .vditor-reset {
-    padding: 20px !important;
   }
 }
 
@@ -275,7 +296,11 @@ body {
     background: #fff !important;
   }
 
-  .vditor-wysiwyg {
+  .vditor-wysiwyg,
+  .vditor-ir,
+  .vditor-sv,
+  .editor-shell .vditor-preview > .vditor-reset {
+    width: 100% !important;
     padding: 0 !important;
     margin: 0 !important;
     max-width: none !important;
