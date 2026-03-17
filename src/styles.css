@@ -246,6 +246,28 @@ body {
   padding: 20px 0 !important;
 }
 
+.vditor-reset .language-mermaid,
+.vditor-reset .language-flowchart,
+.vditor-reset .language-graphviz,
+.vditor-reset .language-markmap,
+.vditor-reset .language-mindmap,
+.vditor-reset .language-echarts {
+  max-width: 100% !important;
+  overflow-x: auto !important;
+}
+
+.vditor-reset .language-mermaid svg,
+.vditor-reset .language-flowchart svg,
+.vditor-reset .language-graphviz svg,
+.vditor-reset .language-markmap svg,
+.vditor-reset .language-mindmap svg,
+.vditor-reset .language-echarts canvas {
+  max-width: 100% !important;
+  height: auto !important;
+  display: block;
+  margin: 0 auto;
+}
+
 @media (max-width: 720px) {
   .app-header,
   .app-statusbar {
