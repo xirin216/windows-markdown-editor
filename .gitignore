@@ -1,0 +1,32 @@
+# Node / Vite
+/node_modules/
+/dist/
+/.vite/
+*.tsbuildinfo
+
+# Generated editor assets
+/public/vditor/dist/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Tauri / Rust
+/src-tauri/target/
+/src-tauri/gen/schemas/
+
+# IDE / OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+.idea/
+.vscode/
+*.swp
+*.swo
