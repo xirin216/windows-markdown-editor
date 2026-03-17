@@ -15,7 +15,6 @@ import {
 } from "@tauri-apps/plugin-fs";
 
 const APP_NAME = "markdown-editor";
-const EDITOR_WIDTH_STORAGE_KEY = "markdown-editor-width";
 const DEFAULT_DOCUMENT = `# New Document
 
 Start writing in Markdown.
@@ -47,16 +46,7 @@ function App() {
   const currentFilePathRef = useRef<string | null>(null);
   const [currentFilePath, setCurrentFilePath] = useState<string | null>(null);
   const [isEditorReady, setIsEditorReady] = useState(false);
-  const [editorWidth, setEditorWidth] = useState<EditorWidth>(() => {
-    if (typeof window === "undefined") {
-      return "standard";
-    }
-
-    const savedWidth = window.localStorage.getItem(EDITOR_WIDTH_STORAGE_KEY);
-    return WIDTH_OPTIONS.some((option) => option.id === savedWidth)
-      ? (savedWidth as EditorWidth)
-      : "standard";
-  });
+  const [editorWidth, setEditorWidth] = useState<EditorWidth>("standard");
 
   const setActiveFilePath = (filePath: string | null) => {
     currentFilePathRef.current = filePath;
@@ -137,10 +127,6 @@ function App() {
     document.title = windowTitle;
     void getCurrentWindow().setTitle(windowTitle);
   }, [currentFilePath]);
-
-  useEffect(() => {
-    window.localStorage.setItem(EDITOR_WIDTH_STORAGE_KEY, editorWidth);
-  }, [editorWidth]);
 
   useEffect(() => {
     if (!editorRef.current || vditorRef.current) {
