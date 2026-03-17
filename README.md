@@ -305,6 +305,65 @@ src-tauri\target\release\bundle
 - `.exe`
 - 기타 Tauri 번들 형식
 
+## GitHub Actions 자동 릴리스
+
+이 저장소에는 GitHub Actions 기반 자동 릴리스 워크플로가 포함되어 있습니다.
+
+파일:
+
+```text
+.github/workflows/release.yml
+```
+
+동작 방식:
+
+- `main` 브랜치에 push
+  - 앱 버전이 변경된 경우에만 `prerelease` 생성
+- `v*` 태그 push
+  - 정식 `release` 생성
+
+### prerelease 생성 조건
+
+`main`에 push되더라도 항상 release를 만드는 것은 아닙니다.  
+아래 파일의 버전이 실제로 바뀐 경우에만 prerelease가 생성됩니다.
+
+```text
+src-tauri/tauri.conf.json
+```
+
+예:
+
+```json
+{
+  "version": "0.1.0"
+}
+```
+
+이 값을 `0.1.1`로 올린 뒤 `main`에 push하면 새 prerelease가 생성됩니다.
+
+### 정식 release 생성 방법
+
+정식 release는 태그를 push할 때 생성됩니다.
+
+태그 이름은 반드시 현재 앱 버전과 일치해야 합니다.
+
+예를 들어 `src-tauri/tauri.conf.json`의 버전이:
+
+```json
+{
+  "version": "0.1.1"
+}
+```
+
+이라면 태그는 아래처럼 만들어야 합니다.
+
+```powershell
+git tag v0.1.1
+git push origin v0.1.1
+```
+
+태그 이름이 앱 버전과 다르면 워크플로는 실패하도록 설정되어 있습니다.
+
 ## 라이선스
 
 필요에 따라 추가하세요.
